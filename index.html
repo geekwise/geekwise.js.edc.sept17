@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask Name JS Demo</title>
+    <script type="text/javascript">
+    
+    var name;
+    var ask_name_prompt;
+    var container_for_names;
+    var new_name_container;
+    var new_name; 
+    var name_array = [];
+    
+        
+    var update_name;    
+        
+        
+    var delete_name;
+        
+        
+    function ask_for_name(){
+        
+        name = prompt('enter a name');
+        return name;
+    
+    };
+    
+    
+    function update_name(){
+        
+        name_array = document.body.getElementsByTagName('p');
+        for(i=0; i<name_array.length; i++){
+            var current_name_element = i;
+            this.addEventListener('dblclick',function(){
+                name_array[current_name_element].textContent = ask_for_name();
+                
+            });  
+        };
+    };
+        
+        
+    function delete_name(){
+        name_array = document.body.getElementsByTagName('p');
+        container_for_names.removeChild(name_array[name_array.length - 1]);
+    };    
+    
+        
+        
+    document.addEventListener('DOMContentLoaded',function(event){
+    
+    
+        ask_name_prompt = document.getElementById('ask_name_prompt');
+        container_for_names = document.getElementById('container_for_names');
+        ask_name_prompt.addEventListener('click',function(event){
+        
+                new_name = ask_for_name();
+                new_name_container = document.createElement('p');
+                container_for_names.appendChild(new_name_container);
+                new_name_container.textContent = new_name;
+                update_name();                
+                
+        });
+        
+        
+        
+      delete_name = document.getElementById('delete_name');
+      delete_name.addEventListener('click',function(){
+          delete_name();
+          update_name();
+      });
+        
+     
+    
+        
+        
+        
+        
+    
+    });
+    
+    
+    
+    
+    </script>
+    <style>
+        div{
+            width:200px;
+            background-color:lightCoral;
+        }
+        
+        p{
+            font-size:3em;
+        }
+        
+        
+        #container_for_names{
+            
+            width:200px;
+            background-color:#9EB1B9;
+        }
+        
+        #delete_name{
+        
+            width:200px;
+            background-color:#e39d9d;
+        }
+        
+        
+        
+        
+    </style>    
+
+</head>
+<body>
+   <div id='ask_name_prompt'>
+   <h1>Enter A Name</h1>
+    </div>
+    <div id='container_for_names'>
+    </div>
+    
+   <div id='delete_name'>
+   <h1>Delete Last Name Entered</h1>
+    </div>
+    
+    
+</body>
+</html>
